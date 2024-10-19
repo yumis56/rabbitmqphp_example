@@ -1,33 +1,38 @@
 #!/usr/bin/php
 <?php
+//debug
+echo "|| TEST: testRabbitMQClient.php is running! ||";
+
+//
+
 require_once('path.inc');
 require_once('get_host_info.inc');
 require_once('rabbitMQLib.inc');
-/*
+
 $client = new rabbitMQClient("testRabbitMQ.ini","testServer");
-if (isset($argv[1]))
-{
-  $msg = $argv[1];
-}
-else
-{
-  $msg = "test message";
-}
-*/
+
 $request = array();
 $request['type'] = "Login";
 $request['username'] = $_POST["username"];
 $request['password'] = $_POST["password"];
-$msg = "welcome back my skibidi sigmas";
-$request['message'] = $msg;
-echo '<pre>' ; print_r($request); echo '</pre';
-/*
+//
+//$msg = "welcome back my skibidi sigmas";
+//$request['message'] = $msg;
+//echo '<pre>' ; print_r($request); echo '</pre';
+
+
+
+
 $response = $client->send_request($request);
-//$response = $client->publish($request);
+if ($response) {
+	echo '<pre>' . print_r($response, true) . '</pre';
+}
+else {
 
-echo "client received response: ".PHP_EOL;
-print_r($response);
-echo "\n\n";
+$response['message'] = "ERROR: no resposne from RabbitMQ";
+echo '<pre>' ; print_r($response); echo '</pre';
 
-echo $argv[0]." END".PHP_EOL;
-*/
+}
+
+
+//end of file
