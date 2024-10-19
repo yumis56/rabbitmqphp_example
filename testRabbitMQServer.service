@@ -7,8 +7,7 @@ ExecStart=/usr/bin/php /var/www/sample/rabbitmqphp_example/testRabbitMQServer.ph
 ExecStop=/usr/sbin/rabbitmqctl stop
 PIDFile=/run/testRabbitMQServer.pid
 Restart=on-failure
-User=vboxuser
-Group=vboxuser
+
 
 [Install]
 WantedBy=multi-user.target
