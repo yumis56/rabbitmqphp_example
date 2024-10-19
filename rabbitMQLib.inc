@@ -1,5 +1,4 @@
 <?php
-
 require_once('get_host_info.inc');
 
 class rabbitMQServer
@@ -114,9 +113,14 @@ class rabbitMQServer
 			$exchange = new AMQPExchange($channel);
       $exchange->setName($this->exchange);
       $exchange->setType($this->exchange_type);
-
+			//TODO
+      			$exchange->declare();
+      			//
 			$this->conn_queue = new AMQPQueue($channel);
 			$this->conn_queue->setName($this->queue);
+			//TODO
+			$this->conn_queue->declare();
+			//
 			$this->conn_queue->bind($exchange->getName(),$this->routing_key);
 
 			$this->conn_queue->consume(array($this,'process_message'));
@@ -209,7 +213,9 @@ class rabbitMQClient
 			$exchange = new AMQPExchange($channel);
       $exchange->setName($this->exchange);
       $exchange->setType($this->exchange_type);
-
+//TODO
+	$exchange->declare();
+//
       $callback_queue = new AMQPQueue($channel);
       $callback_queue->setName($this->queue."_response");
       $callback_queue->declare();
@@ -217,6 +223,10 @@ class rabbitMQClient
 
 			$this->conn_queue = new AMQPQueue($channel);
 			$this->conn_queue->setName($this->queue);
+			//
+			
+			$this->conn_queue->declare();
+			//
 			$this->conn_queue->bind($exchange->getName(),$this->routing_key);
 
 			$exchange->publish($json_message,$this->routing_key,AMQP_NOPARAM,array('reply_to'=>$callback_queue->getName(),'correlation_id'=>$uid));
@@ -257,8 +267,15 @@ class rabbitMQClient
 			$exchange = new AMQPExchange($channel);
       $exchange->setName($this->exchange);
       $exchange->setType($this->exchange_type);
+      //TODO
+      
+      			$exchange->declare();
+      //
 			$this->conn_queue = new AMQPQueue($channel);
 			$this->conn_queue->setName($this->queue);
+			//TODO
+			$this->conn_queue->declare();
+			//
 			$this->conn_queue->bind($exchange->getName(),$this->routing_key);
 			return $exchange->publish($json_message,$this->routing_key);
 		}
