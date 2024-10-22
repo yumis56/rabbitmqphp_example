@@ -1,4 +1,7 @@
 <?php
+require_once('path.inc');
+require_once('get_host_info.inc');
+require_once('rabbitMQLib.inc');
 session_start();
 
 // Check if the user is logged in by verifying if the session variables are set
