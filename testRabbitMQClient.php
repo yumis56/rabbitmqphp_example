@@ -12,7 +12,7 @@ require_once('rabbitMQLib.inc');
 $client = new rabbitMQClient("testRabbitMQ.ini","testServer");
 
 $request = array();
-$request['type'] = "Login";
+$request['type'] = "login";
 $request['username'] = $_POST["username"];
 $request['password'] = $_POST["password"];
 //
