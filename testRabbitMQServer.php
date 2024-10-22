@@ -25,7 +25,9 @@ function doLogin($username, $password) {
 
     // Check for connection errors
     if ($conn->connect_error) {
-        return false; // Return false on connection error
+	    
+       return array("returnCode" => '0', 'message'=>"Database connection error");
+	    #return false; // Return false on connection error
     }
 
     // Prepare and bind the SQL statement
@@ -38,17 +40,21 @@ function doLogin($username, $password) {
 
     // Check if the username exists
     if ($stmt->num_rows === 0) {
-        return false; // Return false if username does not exist
+   #     return false; // Return false if username does not exist
+    
+       return array("returnCode" => '0', 'message'=>"Username does not exist!");
     }
 // Bind result to variable
     $stmt->bind_result($hashedPassword);
     $stmt->fetch();
 
-    // Verify the password (assuming you stored hashed passwords)
     if (password_verify($password, $hashedPassword)) {
-        return true; // Return true for successful login
+       # return true; // Return true for successful login
+       return array("returnCode" => '1', 'message'=>"Login success!");
     } else {
-        return false; // Return false for failed password verification
+       #return false; // Return false for failed password verification
+
+       return array("returnCode" => '0', 'message'=>"Incorrect username or password!");
     }
 
     // Close the statement and connection
