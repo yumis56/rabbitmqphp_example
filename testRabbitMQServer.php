@@ -12,9 +12,7 @@ require_once('rabbitMQLib.inc');
     //return false if not valid
 //}
 
-
 function doLogin($username, $password) {
-
     $host = 'localhost';
     $dbUser = 'root';
     $dbPass = '';
@@ -25,9 +23,7 @@ function doLogin($username, $password) {
 
     // Check for connection errors
     if ($conn->connect_error) {
-	    
-       return array("returnCode" => '0', 'message'=>"Database connection error");
-	    #return false; // Return false on connection error
+        return array("returnCode" => '0', 'message' => "Database connection error");
     }
 
     // Prepare and bind the SQL statement
@@ -40,29 +36,24 @@ function doLogin($username, $password) {
 
     // Check if the username exists
     if ($stmt->num_rows === 0) {
-   #     return false; // Return false if username does not exist
-    
-       return array("returnCode" => '0', 'message'=>"Username does not exist!");
+        return array("returnCode" => '0', 'message' => "Username does not exist!");
     }
-// Bind result to variable
-    $stmt->bind_result($hashedPassword);
+
+    // Bind result to variable
+    $stmt->bind_result($storedPassword);
     $stmt->fetch();
 
-    if (password_verify($password, $hashedPassword)) {
-       # return true; // Return true for successful login
-       return array("returnCode" => '1', 'message'=>"Login success!");
+    // Check if the provided password matches the stored password
+    if ($password === $storedPassword) {
+        return array("returnCode" => '1', 'message' => "Login success!");
     } else {
-       #return false; // Return false for failed password verification
-
-       return array("returnCode" => '0', 'message'=>"Incorrect username or password!");
+        return array("returnCode" => '0', 'message' => "Incorrect username or password!");
     }
 
     // Close the statement and connection
     $stmt->close();
     $conn->close();
 }
-
-
 
 
 
