@@ -24,8 +24,15 @@ $request['password'] = $_POST["password"];
 
 
 $response = $client->send_request($request);
-if ($response) {
-	echo '<pre>' . print_r($response, true) . '</pre';
+if ($response) { //as-is, it sends both success and failures
+	//echo '<pre>' . print_r($response, true) . '</pre';
+	if ($response[returnCode]){ //this specifies if logn is success (returnCode=1)
+		header('Location: welcome.php');
+		exit();
+	}
+	else {
+		echo '<pre>' . print_r($response, true) . '</pre';
+	}
 }
 else {
 
