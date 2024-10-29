@@ -4,6 +4,8 @@ require_once('get_host_info.inc');
 require_once('rabbitMQLib.inc');
 session_start();
 
+$username = $_SESSION['user'];
+$role = $_SESSION['role'];
 // Check if the user is logged in by verifying if the session variables are set
 if (!isset($_SESSION['user']) || !isset($_SESSION['role'])) {
     // If the user is not logged in, redirect to the login page
@@ -11,8 +13,7 @@ if (!isset($_SESSION['user']) || !isset($_SESSION['role'])) {
     exit();
 }
 
-$username = $_SESSION['user'];
-$role = $_SESSION['role'];
+
 ?>
 
 <!DOCTYPE html>
