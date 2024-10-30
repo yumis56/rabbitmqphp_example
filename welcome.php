@@ -30,7 +30,8 @@ if (!isset($_SESSION['user']) || !isset($_SESSION['role'])) {
         <h1>Welcome, <?php echo htmlspecialchars($username); ?>!</h1>
         <p>You have successfully logged in.</p>
        <!-- <p>Your role is: <?php echo htmlspecialchars($role); ?></p> -->
-	<a href="login.php">Logout</a>
+       <a href="search.php" class="button">Go to Search</a>
+       <a href="login.php">Logout</a>
 	
     </div>
 </body>
