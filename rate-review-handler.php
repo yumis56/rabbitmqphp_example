@@ -31,8 +31,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $reviewNum = $_POST['rating']
 
     // Check if the file upload is valid
-    if (isset($_FILES['photo']) && $_FILES['photo']['error'] === UPLOAD_ERR_OK) 
-    {
+
+    if (isset($_FILES['photo']) && $_FILES['photo']['error'] === UPLOAD_ERR_OK) {
+
         // Get file data
         $fileTmpPath = $_FILES['photo']['tmp_name'];
         $fileName = $_FILES['photo']['name'];
@@ -68,8 +69,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     } else {
         $_SESSION['message'] = "Error with the uploaded photo.";
          */ 
-        }
+       
     }
+
 
 try {
     // Connect to RabbitMQ server

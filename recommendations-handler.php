@@ -1,6 +1,8 @@
 <?php
 // recommendations_handler.php
 
+session_start(); // Start the session at the beginning
+
 // Example function to retrieve recommendations based on budget and space preferences
 function getRecommendations($budget, $spacePreferences) {
     $recommendations = [];
@@ -18,19 +20,23 @@ function getRecommendations($budget, $spacePreferences) {
             $recommendations[] = $spot;
         }
     }
-    
+
     return $recommendations;
 }
 
 // Check if form data was submitted and process it
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    $budget = $_POST['budgetOption'] ?? '';
-    $spaces = $_POST['spaces'] ?? [];
+    // Use radio buttons and checkboxes from form submission
+    $budget = $_POST['budgetOption'] ?? ''; // Single option for budget
+    $spaces = $_POST['spaces'] ?? []; // Multiple options for spaces
+
+    // Get recommendations based on form input
     $recommendations = getRecommendations($budget, $spaces);
-    
-    // Pass recommendations data to the consumer file by storing it in session
-    session_start();
+
+    // Store recommendations data in session for use in recommendations.php
     $_SESSION['recommendations'] = $recommendations;
+    
+    // Redirect to recommendations.php to display the results
     header("Location: recommendations.php");
     exit();
 }
