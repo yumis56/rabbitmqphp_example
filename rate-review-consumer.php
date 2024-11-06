@@ -29,14 +29,11 @@ $callback = function($msg) use ($pdo, $channel) {
     $date = $rateReviewData['date'];
 
     // Insert rate review data into the database
-    $stmt = $pdo->prepare("INSERT INTO reviews (guest_name, review, rating, location, date) VALUES (:guestName, :review, :rating, :location, :date)");
-    $stmt->execute([
-        'guestName' => $guestName,
-        'review' => $review,
-        'rating' => $rating,
-        'location' => $location,
-        'date' => $date
-    ]);
+
+    $stmt = $pdo->prepare("INSERT INTO reviews (guest_name, review_text, rating, location, date) VALUES ('$guestName', '$review', '$rating', '$location', '$date')");
+    $stmt->execute();
+      
+
 
     // Calculate the average rating for the location (example query)
     $avgStmt = $pdo->prepare("SELECT AVG(rating) as avgRating FROM rate_reviews WHERE location = :location");
