@@ -3,13 +3,13 @@
     <head> 
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, intitial-scale=1.0">
-        <title>Login </title>
+        <title>Register</title>
         <link rel="stylesheet" type="text/css" href="style.css">  
 
     </head>
     <body>
         <div class="container">
-            <h2>Login </h2>
+            <h2>Create an Account</h2>
 
 	    <?php if (isset($_SESSION['error'])): ?>
                 <div class "error message" style="color: red;">
@@ -18,22 +18,26 @@
             <?php endif;?>
 
 
+
+
             <form method="POST" action="/rabbitmqphp_example/testRabbitMQClient.php">
                 <div class="container">
                     <p>Please fill in all fields </p>
                 </div>
-                <div class="container darker">
+		<div class="container darker">
+		    <label for="email">Email:</label>
+		    <input type="email" id="email" name="email"/> <br><br>
                     <label for="username">Username:</label>
-                    <input type="text" id="username" name="username"/> <br><br>
+		    <input type="text" id="username" name="username"/> <br><br>
                     <label for="password">Password:</label>
                     <input type="password" id="password" name="password"/> <br><br>
-                    <input type="submit" name="submit" value="Login"/>
-
-                    <a href="register.php" class="button">Register</a>
+                    <input type="submit" name="submit" value="Create Account"/>
+                    
                 </div>
 	    </form>
-		<br>
+		<br> <!--TODO remove this once css implemented !!-->
 		<div>
+		<a href="login.php">Log In</a>
 		</div>
         </div>
     </body>

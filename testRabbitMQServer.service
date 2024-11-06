@@ -1,0 +1,13 @@
+[Unit]
+Description=Test Rabbit MQ Server
+After=network.target
+
+[Service]
+ExecStart=/usr/bin/php /var/www/sample/rabbitmqphp_example/testRabbitMQServer.php
+ExecStop=/usr/sbin/rabbitmqctl stop
+PIDFile=/run/testRabbitMQServer.pid
+Restart=on-failure
+
+
+[Install]
+WantedBy=multi-user.target
