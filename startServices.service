@@ -6,7 +6,7 @@ After=network.target
 Type=oneshot
 EnvironmentFile=/var/www/sample/rabbitmqphp_example/.env
 ExecStart=/bin/bash -c "\
-  zerotiel-cli join $ZEROTIER_ADDRESS && \
+  zerotier-cli join $ZEROTIER_ADDRESS && \
   systemctl start rabbitmq-server && \
   systemctl start apache2 && \
   systemctl start testRabbitMQServer"
