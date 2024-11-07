@@ -1,0 +1,16 @@
+[Unit]
+Description=Start ZeroTier, RabbitMQ, Apache2, testRabbitMQServer
+After=network.target
+
+[Service]
+Type=oneshot
+EnvironmentFile=/var/www/sample/rabbitmqphp_example/.env
+ExecStart=/bin/bash -c "\
+  zerotiel-cli join $ZEROTIER_ADDRESS && \
+  systemctl start rabbitmq-server && \
+  systemctl start apache2 && \
+  systemctl start testRabbitMQServer"
+RemainAfterExit=true
+
+[Install]
+WantedBy=multi-user.target
