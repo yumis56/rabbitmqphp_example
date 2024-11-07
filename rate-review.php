@@ -16,19 +16,19 @@
 
     <form method="POST" action="rate-review-handler.php" enctype="multipart/form-data">
         <label for="guest_name">Guest Name:</label><br>
-        <input type="text" id="guestName" name="guestName" required><br><br>
+        <input type="text" id="guest_name" name="guest_name" required><br><br>
 
         <label for="rating">Rate the Location (Between 1-5):</label><br>
         <input type="number" id="rating" name="rating" min="1" max="5" required><br><br>
 
         <label for="review_text">Review:</label><br>
-        <textarea id="review" name="review" rows="10" cols="50" required></textarea><br><br>
+        <textarea id="review_text" name="review_text" rows="10" cols="50" required></textarea><br><br>
         
         <label for="location">Location:</label><br>
         <input type="text" id="location" name="location" required><br><br>
 
         <label for="visit_date">Date of Visit:</label><br>
-        <input type="date" id="date" name="date" required><br><br>
+        <input type="date" id="visit_date" name="visit_date" required><br><br>
 
         <label for="photo">Upload Photo (optional):</label><br>
         <input type="file" name="photo" id="photo" accept="image/*"><br><br>
