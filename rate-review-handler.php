@@ -10,13 +10,6 @@ session_start();
 //$client = new rabbitMQClient("testRabbitMQ.ini", "testServer");
 //TODO is client not already running from login?
 
-guest_name
-rating
-review_text
-location
-visit_date
-photo
-
 $request = array();
 $request['type'] = "review";
 $request['guest_name'] = $_POST["guest_name"];
