@@ -4,6 +4,8 @@ require_once('path.inc');
 require_once('get_host_info.inc');
 require_once('rabbitMQLib.inc');
 
+include_once('rate-review-process.php');
+
 
 function doLogin($username, $password) {
 	//TODO this is for test, remove later
@@ -60,7 +62,6 @@ function doLogin($username, $password) {
 } //end of doLogin
 
 
-
 function requestProcessor($request)
 {
   echo "received request".PHP_EOL;
@@ -75,6 +76,8 @@ function requestProcessor($request)
       return doLogin($request['username'], $request['password']);
     case "validate_session":
       return doValidate($request['sessionId']);
+    case  "review":
+      return doReview($request);
   }
   return array("returnCode" => '0', 'message'=>"Server received request and processed");
 }
