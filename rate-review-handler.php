@@ -7,7 +7,9 @@ session_start();
 
 //this file is based on testRabbitMQClient.php
 
-//$client = new rabbitMQClient("testRabbitMQ.ini", "testServer");
+
+$client	= new rabbitMQClient("testRabbitMQ.ini", "testServer");
+
 //TODO is client not already running from login?
 
 $request = array();
@@ -17,14 +19,15 @@ $request['rating'] = $_POST["rating"];
 $request['review_text'] = $_POST["review_text"];
 $request['location'] = $_POST["location"];
 $request['visit_date'] = $_POST["visit_date"];
-if (isset($_POST['photo']) && !empty($_POST['photo'])){
-    $request['photo'] = $_POST["photo"];
+/*
+if (isset($_FILES['photo']) && !empty($_FILES['photo'])){
+    $request['photo'] = $_FILES["photo"];
 }
-
-$response = $client->send_request($request);
+*/
+$response = $client->publish($request);
 if ($response) { //as-is, it sends both success and failures
 	if ($response['returnCode']){
-		$_SESSION['message']='Successfully submitted review!';
+	//	$_SESSION['message']='Successfully submitted review!';
 		header("Location: rate-review.php");
 		exit();
 	}
@@ -41,4 +44,4 @@ else {
 
 }
 
-
+?>

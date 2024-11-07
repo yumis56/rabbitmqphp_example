@@ -30,8 +30,9 @@
         <label for="visit_date">Date of Visit:</label><br>
         <input type="date" id="visit_date" name="visit_date" required><br><br>
 
-        <label for="photo">Upload Photo (optional):</label><br>
-        <input type="file" name="photo" id="photo" accept="image/*"><br><br>
+	<!-- <label for="photo">Upload Photo (optional):</label> -->
+<br>
+	<!-- <input type="file" name="photo" id="photo" accept="image/*"> -->
 <br><br>
         <button type="submit">Submit Review</button>
     </form>
