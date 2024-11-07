@@ -25,6 +25,7 @@ $response = $client->send_request($request);
 if ($response) { //as-is, it sends both success and failures
 	if ($response['returnCode']){
 		$_SESSION['message']='Successfully submitted review!';
+		header("Location: rate-review.php");
 		exit();
 	}
 	else {
